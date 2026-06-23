@@ -1,6 +1,7 @@
 import json
 import logging
 import random
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,71 +28,104 @@ class SteamScraper:
         self.session.headers.update({"User-Agent": SCRAPER_USER_AGENT})
 
     def _random_delay(self):
-        delay = random.uniform(SCRAPER_MIN_DELAY, SCRAPER_MAX_DELAY)
-        time.sleep(delay)
+        time.sleep(random.uniform(SCRAPER_MIN_DELAY, SCRAPER_MAX_DELAY))
 
     def fetch_patch_notes(self) -> Optional[dict]:
-        url = f"https://store.steampowered.com/news/app/{STEAM_APP_ID}"
-        self._random_delay()
+        url = "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/"
         try:
-            resp = self.session.get(url, timeout=30)
+            resp = self.session.get(
+                url,
+                params={"appid": STEAM_APP_ID, "count": 5, "maxlength": 1000},
+                timeout=30,
+            )
             resp.raise_for_status()
-            soup = BeautifulSoup(resp.text, "html.parser")
-            posts = soup.select(".newsPost")
-            if not posts:
+            data = resp.json()
+            items = data.get("appnews", {}).get("newsitems", [])
+            if not items:
                 return None
-            latest = posts[0]
-            return {
-                "title": latest.get("title", "").strip(),
-                "date": latest.get("date", "").strip(),
-                "body": latest.get_text(strip=True)[:2000],
-                "source": "steam_news",
-                "scraped_at": datetime.now(timezone.utc).isoformat(),
-            }
+
+            for item in items:
+                title = item.get("title", "")
+                if not title:
+                    continue
+                return {
+                    "title": title.strip(),
+                    "date": datetime.fromtimestamp(item["date"]).isoformat(),
+                    "body": item.get("contents", "")[:2000],
+                    "url": item.get("url", ""),
+                    "source": "steam_news_api",
+                    "scraped_at": datetime.now(timezone.utc).isoformat(),
+                }
+            return None
         except requests.RequestException as e:
             logger.error(f"Failed to fetch patch notes: {e}")
             return None
 
-    def fetch_workshop_listings(self, max_pages=3) -> list[dict]:
-        listings = []
+    def fetch_workshop_listings(self, max_pages=2) -> list[dict]:
+        items_by_id = {}
         for page in range(1, max_pages + 1):
-            url = (
-                f"https://steamcommunity.com/workshop/browse/"
-                f"?appid={STEAM_WORKSHOP_ID}"
-                f"&browsesort=subscriptions"
-                f"&section=readytouseitems"
-                f"&actualsort=trend"
-                f"&p={page}"
-            )
+            url = "https://steamcommunity.com/workshop/browse/"
+            params = {
+                "appid": STEAM_WORKSHOP_ID,
+                "browsesort": "subscriptions",
+                "section": "readytouseitems",
+                "actualsort": "trend",
+                "p": page,
+            }
             self._random_delay()
             try:
-                resp = self.session.get(url, timeout=30)
+                resp = self.session.get(url, params=params, timeout=30)
                 resp.raise_for_status()
                 soup = BeautifulSoup(resp.text, "html.parser")
-                for item in soup.select(".workshopItem"):
-                    title_el = item.select_one(".workshopItemTitle")
-                    author_el = item.select_one(".workshopItemAuthor a")
-                    rating_el = item.select_one(".fileRating")
-                    preview_el = item.select_one("img.workshopItemPreview")
-                    listings.append({
-                        "title": title_el.get_text(strip=True) if title_el else "",
-                        "author": author_el.get_text(strip=True) if author_el else "",
-                        "rating": self._parse_rating(rating_el),
-                        "preview_url": preview_el.get("src") if preview_el else "",
-                        "scraped_at": datetime.now(timezone.utc).isoformat(),
-                    })
+
+                # Build a dict of fileid -> data from all matching links
+                for a_tag in soup.find_all("a", href=re.compile(r"sharedfiles/filedetails/\?id=(\d+)")):
+                    m = re.search(r"sharedfiles/filedetails/\?id=(\d+)", a_tag["href"])
+                    if not m:
+                        continue
+                    fid = m.group(1)
+                    if fid not in items_by_id:
+                        items_by_id[fid] = {
+                            "title": a_tag.get_text(strip=True) or "",
+                            "preview_url": "",
+                            "rating": None,
+                            "author": "",
+                            "publishedfileid": fid,
+                            "scraped_at": datetime.now(timezone.utc).isoformat(),
+                        }
+                    # If this A has an IMG, save the preview URL
+                    img = a_tag.find("img")
+                    if img and img.get("src"):
+                        src = img["src"]
+                        # Use the full-res version (remove query params for resize)
+                        items_by_id[fid]["preview_url"] = src.split("?")[0]
+                    # If this A has text, save it as title
+                    txt = a_tag.get_text(strip=True)
+                    if txt and not items_by_id[fid]["title"]:
+                        items_by_id[fid]["title"] = txt
+
+                # Extract ratings from the page (look for star rating spans)
+                for span in soup.find_all("span"):
+                    txt = span.get_text(strip=True)
+                    m_rate = re.match(r"^(\d+(?:\.\d+)?)\s*★$", txt)
+                    if m_rate:
+                        rating = float(m_rate.group(1))
+                        # Find the associated workshop item by proximity
+                        parent = span.find_parent("div", class_=re.compile(r"item|workshop|browse"))
+                        if parent:
+                            file_link = parent.find("a", href=re.compile(r"sharedfiles/filedetails/\?id=(\d+)"))
+                            if file_link:
+                                m2 = re.search(r"sharedfiles/filedetails/\?id=(\d+)", file_link["href"])
+                                if m2 and m2.group(1) in items_by_id:
+                                    items_by_id[m2.group(1)]["rating"] = rating
+
             except requests.RequestException as e:
                 logger.error(f"Failed to fetch workshop page {page}: {e}")
-        return listings
 
-    def _parse_rating(self, el) -> Optional[float]:
-        if not el:
-            return None
-        text = el.get("title", "") or el.get_text(strip=True)
-        try:
-            return float(text.split("/")[0].strip())
-        except (ValueError, IndexError):
-            return None
+        # Filter: only items with titles, convert to list
+        result = [v for v in items_by_id.values() if v["title"]]
+        logger.info(f"Scraped {len(result)} workshop items")
+        return result
 
     def run(self) -> dict:
         return {

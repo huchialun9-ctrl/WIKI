@@ -1,0 +1,493 @@
+{
+  "patch_notes": {
+    "title": "update1.7.0",
+    "date": "2026-06-22T22:15:24",
+    "body": "・Added a new official map \"Osaka\" ・Added a report feature ・Fixed the Discord link on the title screen",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1835871199313066",
+    "source": "steam_news_api",
+    "scraped_at": "2026-06-23T13:13:58.011850+00:00"
+  },
+  "workshop_count": 60,
+  "workshop_items": [
+    {
+      "title": "Viking Dining",
+      "preview_url": "https://images.steamusercontent.com/ugc/13692130020098338221/ABC3FF3694D6DAC9A3465D17A7BDB90D4650CC5B/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746909981",
+      "scraped_at": "2026-06-23T13:14:01.832364+00:00"
+    },
+    {
+      "title": "ART GALLERY",
+      "preview_url": "https://images.steamusercontent.com/ugc/9751442565880744508/E103EC79E4CF6839F3BFF5484E56169FD2283A01/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3744672676",
+      "scraped_at": "2026-06-23T13:14:01.832470+00:00"
+    },
+    {
+      "title": "Police Station",
+      "preview_url": "https://images.steamusercontent.com/ugc/16668082708035356632/C7E6451F248619750EBE7028CD641E04CFC56092/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747815568",
+      "scraped_at": "2026-06-23T13:14:01.833385+00:00"
+    },
+    {
+      "title": "Minecraft House",
+      "preview_url": "https://images.steamusercontent.com/ugc/15997883309042678099/A6CA797356D6D3A25C7C6BE8E8B2CD9D0F398277/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746389744",
+      "scraped_at": "2026-06-23T13:14:01.833454+00:00"
+    },
+    {
+      "title": "Peach's Castle Deluxe",
+      "preview_url": "https://images.steamusercontent.com/ugc/9927751415463191071/D89C011911ADD8DF9636C366C98305BE7A43E414/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749468635",
+      "scraped_at": "2026-06-23T13:14:01.833500+00:00"
+    },
+    {
+      "title": "Minecraft Lobby",
+      "preview_url": "https://images.steamusercontent.com/ugc/13543952744904932719/D0EEFDBD56D25BD669763B61F72ABB1B9D9D34AE/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746941111",
+      "scraped_at": "2026-06-23T13:14:01.833540+00:00"
+    },
+    {
+      "title": "de_inferno",
+      "preview_url": "https://images.steamusercontent.com/ugc/9226691644891225299/7F082A5AD3D98CCE16401FC7228A3048B608843B/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749337007",
+      "scraped_at": "2026-06-23T13:14:01.833578+00:00"
+    },
+    {
+      "title": "Mita's Apartment 【MiSide】",
+      "preview_url": "https://images.steamusercontent.com/ugc/10684633212983702825/ED59A9DBA21D85BD777DDBFF8B4C8B28BC17265A/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746167196",
+      "scraped_at": "2026-06-23T13:14:01.833615+00:00"
+    },
+    {
+      "title": "Bikini Bottom",
+      "preview_url": "https://images.steamusercontent.com/ugc/14906373178721883619/7B48EE463C3200694958EE62186D86200C32C574/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746264505",
+      "scraped_at": "2026-06-23T13:14:01.833659+00:00"
+    },
+    {
+      "title": "Restaurant Building",
+      "preview_url": "https://images.steamusercontent.com/ugc/14888452279939270957/F4257924A710DD8BDF546B847EBCADD4C93C544A/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745191968",
+      "scraped_at": "2026-06-23T13:14:01.833692+00:00"
+    },
+    {
+      "title": "Nuketown B02 REWORKED WIP",
+      "preview_url": "https://images.steamusercontent.com/ugc/12257754795590131607/63B19B0BD5414806F18A3BB390A1CC42174AC432/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746998638",
+      "scraped_at": "2026-06-23T13:14:01.833725+00:00"
+    },
+    {
+      "title": "The Market",
+      "preview_url": "https://images.steamusercontent.com/ugc/17652464863993247221/468BD3B5566D6D0F1A8D9DD89C3D064A04C10BF0/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745736909",
+      "scraped_at": "2026-06-23T13:14:01.833779+00:00"
+    },
+    {
+      "title": "2Fort TF2",
+      "preview_url": "https://images.steamusercontent.com/ugc/11073424336579373917/FFB9229B1AC57E4A5544BD34681CF2B34EA9B1C5/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748727036",
+      "scraped_at": "2026-06-23T13:14:01.833810+00:00"
+    },
+    {
+      "title": "West Hunt Inspired Map",
+      "preview_url": "https://images.steamusercontent.com/ugc/9998955506574600555/C493F88C39D095499AFAD7BE23A3512CE3FEF556/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746742291",
+      "scraped_at": "2026-06-23T13:14:01.833854+00:00"
+    },
+    {
+      "title": "Strike Zone Bowling Alley",
+      "preview_url": "https://images.steamusercontent.com/ugc/16727042222417414866/C9106BC819E82DDD31A284ED3D57278E1A5F009B/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747027518",
+      "scraped_at": "2026-06-23T13:14:01.833896+00:00"
+    },
+    {
+      "title": "5 Rooms",
+      "preview_url": "https://images.steamusercontent.com/ugc/17422974174807761635/E6727DBE4A3F4B6244A265BAF476CB84F6D5A25A/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746423958",
+      "scraped_at": "2026-06-23T13:14:01.833927+00:00"
+    },
+    {
+      "title": "Luigis Mansion",
+      "preview_url": "https://images.steamusercontent.com/ugc/9358235330791042155/246FC49899301CCF7B28FAA5D079FA99623A4AC1/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747502110",
+      "scraped_at": "2026-06-23T13:14:01.833959+00:00"
+    },
+    {
+      "title": "Minecraft Stampy's lovely world",
+      "preview_url": "https://images.steamusercontent.com/ugc/13187466222161513020/5462936896A58367341846FFA4D4E82E11966E10/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746928707",
+      "scraped_at": "2026-06-23T13:14:01.833993+00:00"
+    },
+    {
+      "title": "Fall Guys Level [QOL UPDATE]",
+      "preview_url": "https://images.steamusercontent.com/ugc/10892521643278143698/DCA70FAEDED7064B3D1D49E33B3C035040CCE6E2/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749628558",
+      "scraped_at": "2026-06-23T13:14:01.834026+00:00"
+    },
+    {
+      "title": "Maplestory Lacheln",
+      "preview_url": "https://images.steamusercontent.com/ugc/15825207903912607181/F53EE9242C37477501946E2213751372CD5993B4/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745442455",
+      "scraped_at": "2026-06-23T13:14:01.834061+00:00"
+    },
+    {
+      "title": "de_dust2",
+      "preview_url": "https://images.steamusercontent.com/ugc/13014716275501458975/1599FA9DF6E579C6CBB3BCD8BC27705F0E0EC1E0/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745738734",
+      "scraped_at": "2026-06-23T13:14:01.834097+00:00"
+    },
+    {
+      "title": "Messy Computer Desk",
+      "preview_url": "https://images.steamusercontent.com/ugc/14136151800599825498/A872A9B95E7CF12CD85F97B2EFC5C232C3109D00/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746877869",
+      "scraped_at": "2026-06-23T13:14:01.834139+00:00"
+    },
+    {
+      "title": "Minecraft Pre-TU1 Prototype Tutorial World",
+      "preview_url": "https://images.steamusercontent.com/ugc/16305179805321640880/04CDF344D97D4FE967FCF745F912671E9A8678A4/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746878727",
+      "scraped_at": "2026-06-23T13:14:01.834176+00:00"
+    },
+    {
+      "title": "Kitchen",
+      "preview_url": "https://images.steamusercontent.com/ugc/9543737652085889784/1122D962F369BE4E0A4BDD4409C28516E9A9F0E7/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746014934",
+      "scraped_at": "2026-06-23T13:14:01.834209+00:00"
+    },
+    {
+      "title": "Sancturary",
+      "preview_url": "https://images.steamusercontent.com/ugc/17120688761710181404/A7C2F511590FB3D57DFB934B20AF3D140C05F313/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747568245",
+      "scraped_at": "2026-06-23T13:14:01.834244+00:00"
+    },
+    {
+      "title": "Gamer House - Egirl Room - Anime Memes",
+      "preview_url": "https://images.steamusercontent.com/ugc/10026265896629926197/647C78826B324033BCED7A84A18E75CEDBB59E22/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747403425",
+      "scraped_at": "2026-06-23T13:14:01.834277+00:00"
+    },
+    {
+      "title": "Simpsons Family House",
+      "preview_url": "https://images.steamusercontent.com/ugc/18367212070731390835/1E5EBF43AD4874FA904B937D2296EDFF090BFFDD/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3744930374",
+      "scraped_at": "2026-06-23T13:14:01.834340+00:00"
+    },
+    {
+      "title": "Wild west",
+      "preview_url": "https://images.steamusercontent.com/ugc/12684536083494113993/CF02E26F3DA70CD36D30BB0C62C40D67E7D2125E/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747007040",
+      "scraped_at": "2026-06-23T13:14:01.834384+00:00"
+    },
+    {
+      "title": "Shipment",
+      "preview_url": "https://images.steamusercontent.com/ugc/11286251568315791669/954F2508E5E21984FAE3769B6DA2861080731E77/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749703590",
+      "scraped_at": "2026-06-23T13:14:01.834434+00:00"
+    },
+    {
+      "title": "Nightclub",
+      "preview_url": "https://images.steamusercontent.com/ugc/18391351790237915437/EE4E67266CB8B4D4FF46C12E1C55064B33F0FB34/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747352542",
+      "scraped_at": "2026-06-23T13:14:01.834466+00:00"
+    },
+    {
+      "title": "HIDEHOUSE",
+      "preview_url": "https://images.steamusercontent.com/ugc/10270169360046766174/6A7DF78DC2B9DB4EBDBCA3C595D9F57C39CEDF51/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746789490",
+      "scraped_at": "2026-06-23T13:14:07.207189+00:00"
+    },
+    {
+      "title": "Oversized Apartment",
+      "preview_url": "https://images.steamusercontent.com/ugc/14702551991719183153/561BFB9577997EB7A2126A20F4F039038137FC29/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748930586",
+      "scraped_at": "2026-06-23T13:14:07.207255+00:00"
+    },
+    {
+      "title": "Factory",
+      "preview_url": "https://images.steamusercontent.com/ugc/16440334977434570370/B3C8950C0B7566617256E03D442FCF6FD117DDBB/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749203603",
+      "scraped_at": "2026-06-23T13:14:07.207292+00:00"
+    },
+    {
+      "title": "In-N-Out",
+      "preview_url": "https://images.steamusercontent.com/ugc/16875165298618920547/C0289CCF8D7E313D7C0A7AF619881232BAE15840/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749463634",
+      "scraped_at": "2026-06-23T13:14:07.207324+00:00"
+    },
+    {
+      "title": "CS2 Nuke",
+      "preview_url": "https://images.steamusercontent.com/ugc/9307409107732855045/F25AAF7C2148B4CB6A35EAB58F228B0CD39210E1/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747451504",
+      "scraped_at": "2026-06-23T13:14:07.207354+00:00"
+    },
+    {
+      "title": "McDonalds",
+      "preview_url": "https://images.steamusercontent.com/ugc/14934924138588586452/E8602ED7B6575CBBB2D2C876E21B570E4B00FB8E/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749651290",
+      "scraped_at": "2026-06-23T13:14:07.207396+00:00"
+    },
+    {
+      "title": "Gryffindor Commons",
+      "preview_url": "https://images.steamusercontent.com/ugc/11203443956290820933/D501EB8BC05C6715CFDBDD61FF70D3490049373B/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748810997",
+      "scraped_at": "2026-06-23T13:14:07.207459+00:00"
+    },
+    {
+      "title": "Meeting room",
+      "preview_url": "https://images.steamusercontent.com/ugc/11739885369561036156/D47874287678B78366EE490F558E8B4A4DFCAEDD/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745249764",
+      "scraped_at": "2026-06-23T13:14:07.207488+00:00"
+    },
+    {
+      "title": "Low Poly Mini Town",
+      "preview_url": "https://images.steamusercontent.com/ugc/12321398227147082838/5E288217BA526AFA98CE3F83BFA8A50C45BD8F9E/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746319788",
+      "scraped_at": "2026-06-23T13:14:07.207521+00:00"
+    },
+    {
+      "title": "Small Low-Poly Castle",
+      "preview_url": "https://images.steamusercontent.com/ugc/15453166383145933376/BEF9E7FF71A0010C4A390BB0782C1CCE8F5959E1/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3744268872",
+      "scraped_at": "2026-06-23T13:14:07.207560+00:00"
+    },
+    {
+      "title": "Lumbridge Castle OSRS",
+      "preview_url": "https://images.steamusercontent.com/ugc/12856784141013519488/D6600BA69EA626DD655B70FF5D863C1EEF452491/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749356307",
+      "scraped_at": "2026-06-23T13:14:07.207603+00:00"
+    },
+    {
+      "title": "Urchin Underpass",
+      "preview_url": "https://images.steamusercontent.com/ugc/10055084925256688156/7C6344DCD2C563EAEFB6897A8AB16602BA17DFD6/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746941124",
+      "scraped_at": "2026-06-23T13:14:07.207643+00:00"
+    },
+    {
+      "title": "Borderlands",
+      "preview_url": "https://images.steamusercontent.com/ugc/13553788479966841731/78EB654E1384DEA0393292C53D5A1BEB5CC3445E/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746388726",
+      "scraped_at": "2026-06-23T13:14:07.207683+00:00"
+    },
+    {
+      "title": "Peak Airport",
+      "preview_url": "https://images.steamusercontent.com/ugc/17063689919572783334/D34552C7189ED3DD7F01ADD774FA370E94DC156C/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749899550",
+      "scraped_at": "2026-06-23T13:14:07.207725+00:00"
+    },
+    {
+      "title": "Swimming pool!",
+      "preview_url": "https://images.steamusercontent.com/ugc/14809763676444897712/FE07FB7CE736E9FA610A5FC030395BE1A2CF42C1/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3742794683",
+      "scraped_at": "2026-06-23T13:14:07.207777+00:00"
+    },
+    {
+      "title": "Urban Warehouse",
+      "preview_url": "https://images.steamusercontent.com/ugc/17501401917397786903/7595AB0EBBE0553518FF8BE969DAA2B732EC5DBF/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745380074",
+      "scraped_at": "2026-06-23T13:14:07.207817+00:00"
+    },
+    {
+      "title": "Goldshire V2",
+      "preview_url": "https://images.steamusercontent.com/ugc/10782282284191220361/CB828C85116B24663945E80EDC1B1D9A4E0E607D/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748486292",
+      "scraped_at": "2026-06-23T13:14:07.207875+00:00"
+    },
+    {
+      "title": "Minecraft Tutorial World",
+      "preview_url": "https://images.steamusercontent.com/ugc/15381103525779803500/2DFAF0C71F5520A5042D40A20034C59282F7F94E/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745775877",
+      "scraped_at": "2026-06-23T13:14:07.207905+00:00"
+    },
+    {
+      "title": "Ocarina of Time - Kokiri Forest",
+      "preview_url": "https://images.steamusercontent.com/ugc/10532584978705870469/D64809695D27E0EBCB94F91C1B00293ABC9DD5E2/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748754779",
+      "scraped_at": "2026-06-23T13:14:07.207944+00:00"
+    },
+    {
+      "title": "4 Rooms",
+      "preview_url": "https://images.steamusercontent.com/ugc/13381619788528092877/EE7A84946DE6EBB4802D03583EE25EF1B6843B26/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3744606313",
+      "scraped_at": "2026-06-23T13:14:07.207983+00:00"
+    },
+    {
+      "title": "Rust - MW2",
+      "preview_url": "https://images.steamusercontent.com/ugc/14384528690188315143/48D98CA42637071A6A285C00859908D17A4A11D3/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3746267362",
+      "scraped_at": "2026-06-23T13:14:07.208031+00:00"
+    },
+    {
+      "title": "MANBO 113",
+      "preview_url": "https://images.steamusercontent.com/ugc/12785568258186729119/311361A3D314CF5D3A5C615797C0BE013A63DECA/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748071337",
+      "scraped_at": "2026-06-23T13:14:07.208084+00:00"
+    },
+    {
+      "title": "Market Mayhem",
+      "preview_url": "https://images.steamusercontent.com/ugc/15133807040840877999/19DECB0E040EFE9717C7E97AF476FC9E3346A44C/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748101829",
+      "scraped_at": "2026-06-23T13:14:07.208144+00:00"
+    },
+    {
+      "title": "minepops",
+      "preview_url": "https://images.steamusercontent.com/ugc/18103547874003337555/0C4F62740D33ADAF424BBDB1FF84B26619B0A821/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3744995688",
+      "scraped_at": "2026-06-23T13:14:07.208193+00:00"
+    },
+    {
+      "title": "Space Colony LARGE MAP Moon Base",
+      "preview_url": "https://images.steamusercontent.com/ugc/10125364691016843573/2B37186B6B59671B3225465BDB4D90FEDD3B663E/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748710763",
+      "scraped_at": "2026-06-23T13:14:07.208252+00:00"
+    },
+    {
+      "title": "Bob-omb Battlefield (Super Mario 64)",
+      "preview_url": "https://images.steamusercontent.com/ugc/16768936460166576082/D4DED48DA706C4D9F23419D5EC792A007E8D65E6/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3748083686",
+      "scraped_at": "2026-06-23T13:14:07.208281+00:00"
+    },
+    {
+      "title": "MW2 Terminal (Interior Only)",
+      "preview_url": "https://images.steamusercontent.com/ugc/17318386261272480403/AE60FA893FB9F901B5BBEF8AC3BC84D4A4828040/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3745148802",
+      "scraped_at": "2026-06-23T13:14:07.208320+00:00"
+    },
+    {
+      "title": "Nether Journey (Minecraft)",
+      "preview_url": "https://images.steamusercontent.com/ugc/18380195522591101432/D2813F16F78150537BE4F6A425DC6E22FEF1048C/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3747307933",
+      "scraped_at": "2026-06-23T13:14:07.208351+00:00"
+    },
+    {
+      "title": "Minecraft - Big Vanilla",
+      "preview_url": "https://images.steamusercontent.com/ugc/18290313344760871293/AECBB7EDDBA0E264AAB11DC77ECB738D548269E8/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749911390",
+      "scraped_at": "2026-06-23T13:14:07.208392+00:00"
+    },
+    {
+      "title": "Varrock Square (OSRS)",
+      "preview_url": "https://images.steamusercontent.com/ugc/13981586081972601711/10DDE4563C18B2208323A1BCD6F82B38B2FCA0E7/",
+      "rating": null,
+      "author": "",
+      "publishedfileid": "3749860942",
+      "scraped_at": "2026-06-23T13:14:07.208435+00:00"
+    }
+  ]
+}

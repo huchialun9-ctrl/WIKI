@@ -1,5 +1,6 @@
 import json
 import logging
+import re
 import sys
 from pathlib import Path
 
@@ -30,7 +31,7 @@ def save_to_db(patch, listings):
             logger.info("  Patch notes saved to DB.")
 
         for item in listings:
-            if item["rating"] and item["rating"] >= 4.0:
+            if item.get("rating") and item["rating"] >= 4.0:
                 cur.execute(
                     """INSERT INTO workshop_entries
                        (workshop_id, title, creator_name, rating, preview_url)
@@ -68,11 +69,12 @@ def main():
     logger.info(f"  Found {len(listings)} items.")
 
     for item in listings:
-        if item["preview_url"] and item["rating"] and item["rating"] >= 4.0:
+        if item.get("preview_url"):
             logger.info(f"  Downloading preview for: {item['title']}")
+            safe_name = re.sub(r"[^\w\-]+", "_", item["title"].lower()).strip("_")
             img_proc.download_and_convert(
                 item["preview_url"], "workshop",
-                filename=item["title"].replace(" ", "_").lower()
+                filename=safe_name
             )
 
     try:
