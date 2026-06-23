@@ -4,6 +4,7 @@ namespace: Workshop
 creator: NeonMap
 rating: 4.7
 workshop_id: 3191056234
+image_url: /assets/workshop/osaka_night.svg
 ---
 
 ## 概要

@@ -3,6 +3,7 @@ title: Indoor Country（室內鄉村）
 namespace: Map
 area_sqm: 980
 since_version: 1.2.0
+image_url: /assets/maps/indoor_country.svg
 ---
 
 ## 概要

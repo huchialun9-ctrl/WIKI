@@ -3,6 +3,7 @@ title: Osaka（大阪）
 namespace: Map
 area_sqm: 1400
 since_version: 1.6.0
+image_url: /assets/maps/osaka.svg
 ---
 
 ## 概要

@@ -5,6 +5,7 @@ item_type: 外觀
 cooldown_sec: 0
 coverage_pct: 0
 unlock_condition: 大阪地圖隱藏成就「浪速の一夜」
+image_url: /assets/icons/skin.svg
 ---
 
 ## 概述

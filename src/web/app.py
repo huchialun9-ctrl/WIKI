@@ -68,6 +68,21 @@ def get_article_count() -> int:
     return count
 
 
+def parse_frontmatter(raw: str):
+    """簡易 YAML frontmatter 解析器"""
+    meta = {}
+    body = raw
+    if raw.startswith("---"):
+        parts = raw.split("---", 2)
+        if len(parts) >= 3:
+            for line in parts[1].strip().split("\n"):
+                if ":" in line:
+                    key, val = line.split(":", 1)
+                    meta[key.strip()] = val.strip().strip('"').strip("'")
+            body = parts[2].strip()
+    return meta, body
+
+
 def render_page_content(raw: str, lang="zh-tw", page_id=None) -> dict:
     parser.footnotes = []
     parser.set_lang(lang)
@@ -165,21 +180,46 @@ def view_page(page_path):
     if raw is None:
         abort(404)
 
+    meta, clean_body = parse_frontmatter(raw)
+
     page = get_page_by_slug(namespace, slug)
     page_id = page["id"] if page else None
-    rendered = render_page_content(raw, lang=lang, page_id=page_id)
+    rendered = render_page_content(clean_body, lang=lang, page_id=page_id)
     protection = get_active_protection(page_id) if page_id else None
+    image_url = meta.get("image_url", "")
 
-    return render_template(
-        "page.html",
-        title=page_path,
-        body_html=rendered["body_html"],
-        footnotes=rendered["footnotes"],
-        lang=lang,
-        protection_level=protection["level"] if protection else None,
-        protection_reason=protection.get("reason") if protection else None,
-        grade=page.get("grade") if page else None,
-    )
+    template_kw = {
+        "title": meta.get("title", page_path),
+        "body_html": rendered["body_html"],
+        "footnotes": rendered["footnotes"],
+        "lang": lang,
+        "protection_level": protection["level"] if protection else None,
+        "protection_reason": protection.get("reason") if protection else None,
+        "grade": page.get("grade") if page else None,
+    }
+
+    if namespace == "Map":
+        template_kw["map"] = {
+            "name": meta.get("title", slug),
+            "image_url": image_url,
+            "area_sqm": meta.get("area_sqm"),
+            "since_version": meta.get("since_version"),
+            "colors": [],
+        }
+        return render_template("map.html", **template_kw)
+
+    if namespace == "Item":
+        template_kw["item"] = {
+            "name": meta.get("title", slug),
+            "image_url": image_url,
+            "item_type": meta.get("item_type"),
+            "cooldown_sec": meta.get("cooldown_sec"),
+            "coverage_pct": meta.get("coverage_pct"),
+            "unlock_condition": meta.get("unlock_condition"),
+        }
+        return render_template("item.html", **template_kw)
+
+    return render_template("page.html", **template_kw)
 
 
 @app.route("/edit/<path:page_path>", methods=["GET", "POST"])
@@ -372,9 +412,11 @@ def api_color_info(hex_code):
 # 靜態檔案
 # ================================================================
 
+ASSETS_DIR = Path(__file__).parent.parent.parent / "assets"
+
 @app.route("/assets/<path:filename>")
 def serve_asset(filename):
-    return send_from_directory(Path(PATHS.get("maps")).parent, filename)
+    return send_from_directory(str(ASSETS_DIR), filename)
 
 
 @app.route("/css/<path:filename>")

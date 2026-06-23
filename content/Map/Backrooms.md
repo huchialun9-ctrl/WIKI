@@ -3,6 +3,7 @@ title: Backrooms（後室）
 namespace: Map
 area_sqm: 2000
 since_version: 1.3.0
+image_url: /assets/maps/backrooms.svg
 ---
 
 ## 概要

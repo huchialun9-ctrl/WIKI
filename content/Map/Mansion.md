@@ -3,6 +3,7 @@ title: Mansion（宅邸）
 namespace: Map
 area_sqm: 1250
 since_version: 1.0.0
+image_url: /assets/maps/mansion.svg
 ---
 
 ## 概要

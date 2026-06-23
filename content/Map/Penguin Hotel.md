@@ -3,6 +3,7 @@ title: Penguin Hotel（企鵝飯店）
 namespace: Map
 area_sqm: 1350
 since_version: 1.4.0
+image_url: /assets/maps/penguin_hotel.svg
 ---
 
 ## 概要

@@ -4,6 +4,7 @@ namespace: Workshop
 creator: CastleCrafter
 rating: 4.3
 workshop_id: 3185024912
+image_url: /assets/workshop/peach_castle.svg
 ---
 
 ## 概要

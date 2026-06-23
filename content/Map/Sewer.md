@@ -3,6 +3,7 @@ title: Sewer（下水道）
 namespace: Map
 area_sqm: 1100
 since_version: 1.1.0
+image_url: /assets/maps/sewer.svg
 ---
 
 ## 概要

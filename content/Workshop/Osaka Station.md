@@ -4,6 +4,7 @@ namespace: Workshop
 creator: TransitMap
 rating: 4.2
 workshop_id: 3192057812
+image_url: /assets/workshop/osaka_station.svg
 ---
 
 ## 概要

@@ -3,6 +3,7 @@ title: Sugarland（糖果屋）
 namespace: Map
 area_sqm: 1200
 since_version: 1.5.0
+image_url: /assets/maps/sugarland.svg
 ---
 
 ## 概要

@@ -4,6 +4,7 @@ namespace: Workshop
 creator: MapForge
 rating: 4.5
 workshop_id: 3172489056
+image_url: /assets/workshop/viking_dining.svg
 ---
 
 ## 概要
