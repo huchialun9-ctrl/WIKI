@@ -16,7 +16,7 @@ from config.settings import (
 )
 from src.parser.wikitext import WikitextParser
 from src.db.connection import (
-    init_pool, close_pool, get_page_by_slug, get_page_by_id,
+    db_available, get_page_by_slug, get_page_by_id,
     create_page, get_latest_revision, get_revisions,
     add_revision, rollback_to_revision, get_footnotes,
     get_or_create_user, is_autoconfirmed, get_active_protection,
@@ -391,11 +391,20 @@ def rate_limited(e):
 
 
 # ================================================================
-# 應用啟動
+# 健康檢查（Render 需要）
+# ================================================================
+
+@app.route("/health")
+def health_check():
+    db_status = "ok" if db_available() else "degraded"
+    return jsonify({"status": "alive", "database": db_status})
+
+
+# ================================================================
+# 應用啟動（延遲 DB 連線，不阻塞啟動）
 # ================================================================
 
 def create_app():
-    init_pool()
     return app
 
 

@@ -1,4 +1,5 @@
 import logging
+import os
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from typing import Optional
@@ -12,32 +13,55 @@ from config.settings import DATABASE
 logger = logging.getLogger(__name__)
 
 _pool: Optional[ThreadedConnectionPool] = None
+_db_disabled = False
 
 
-def init_pool(min_conn=2, max_conn=8):
-    global _pool
-    if _pool:
+def init_pool(min_conn=1, max_conn=4):
+    global _pool, _db_disabled
+    if _pool or _db_disabled:
         return
     try:
-        _pool = ThreadedConnectionPool(min_conn, max_conn, **DATABASE)
-        logger.info(f"DB pool initialized ({min_conn}-{max_conn} connections)")
+        host = os.environ.get("WIKI_DB_HOST") or DATABASE.get("host", "localhost")
+        port = int(os.environ.get("WIKI_DB_PORT") or DATABASE.get("port", 5432))
+        dbname = os.environ.get("WIKI_DB_NAME") or DATABASE.get("dbname")
+        user = os.environ.get("WIKI_DB_USER") or DATABASE.get("user")
+        password = os.environ.get("WIKI_DB_PASSWORD") or DATABASE.get("password", "")
+
+        if not dbname:
+            logger.warning("DB not configured, running in degraded mode")
+            _db_disabled = True
+            return
+
+        conn_kw = {
+            "host": host,
+            "port": port,
+            "dbname": dbname,
+            "user": user,
+            "password": password,
+            "connect_timeout": 3,
+        }
+        _pool = ThreadedConnectionPool(min_conn, max_conn, **conn_kw)
+        logger.info(f"DB pool ready ({min_conn}-{max_conn}) @ {host}:{port}/{dbname}")
     except psycopg2.Error as e:
-        logger.error(f"Failed to init DB pool: {e}")
-        raise
+        logger.warning(f"DB unavailable, running in degraded mode: {e}")
+        _db_disabled = True
 
 
 def close_pool():
-    global _pool
+    global _pool, _db_disabled
     if _pool:
         _pool.closeall()
         _pool = None
+        _db_disabled = False
         logger.info("DB pool closed")
 
 
 @contextmanager
 def get_conn():
-    if not _pool:
+    if not _pool and not _db_disabled:
         init_pool()
+    if not _pool:
+        raise RuntimeError("Database is not available (degraded mode)")
     conn = _pool.getconn()
     try:
         yield conn
@@ -49,11 +73,21 @@ def get_conn():
         _pool.putconn(conn)
 
 
+def db_available() -> bool:
+    if _db_disabled:
+        return False
+    if not _pool:
+        init_pool()
+    return _pool is not None
+
+
 # ================================================================
-# CRUD 操作
+# CRUD
 # ================================================================
 
 def get_page_by_slug(namespace: str, slug: str) -> Optional[dict]:
+    if not db_available():
+        return None
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(
@@ -67,6 +101,8 @@ def get_page_by_slug(namespace: str, slug: str) -> Optional[dict]:
 
 
 def get_page_by_id(page_id: int) -> Optional[dict]:
+    if not db_available():
+        return None
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(
@@ -93,6 +129,8 @@ def create_page(namespace: str, title: str, slug: str, is_protected=False) -> in
 
 
 def get_latest_revision(page_id: int) -> Optional[dict]:
+    if not db_available():
+        return None
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(
@@ -115,9 +153,7 @@ def add_revision(page_id: int, editor_id: int, body: str, summary: str = "") -> 
             (page_id, editor_id, body, summary),
         )
         rev_id = cur.fetchone()[0]
-        cur.execute(
-            "UPDATE pages SET updated_at = NOW() WHERE id = %s", (page_id,)
-        )
+        cur.execute("UPDATE pages SET updated_at = NOW() WHERE id = %s", (page_id,))
         cur.execute(
             "UPDATE users SET edit_count = edit_count + 1 WHERE id = %s",
             (editor_id,),
@@ -126,6 +162,8 @@ def add_revision(page_id: int, editor_id: int, body: str, summary: str = "") -> 
 
 
 def get_revisions(page_id: int, limit=50):
+    if not db_available():
+        return []
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(
@@ -159,6 +197,8 @@ def rollback_to_revision(page_id: int, revision_id: int, admin_id: int) -> bool:
 
 
 def get_footnotes(page_id: int):
+    if not db_available():
+        return []
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(
@@ -198,15 +238,17 @@ def get_or_create_user(username: str) -> dict:
 
 
 def is_autoconfirmed(user_id: int) -> bool:
+    if not db_available():
+        return False
     with get_conn() as conn:
         cur = conn.cursor()
-        cur.execute(
-            """SELECT 1 FROM autoconfirmed_users WHERE id = %s""", (user_id,)
-        )
+        cur.execute("SELECT 1 FROM autoconfirmed_users WHERE id = %s", (user_id,))
         return cur.fetchone() is not None
 
 
 def get_active_protection(page_id: int) -> Optional[dict]:
+    if not db_available():
+        return None
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute(

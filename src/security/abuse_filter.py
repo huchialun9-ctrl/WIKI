@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 ALLOWED_DOMAINS = {
     "steamcommunity.com",
     "steampowered.com",
-    "opencode.ai",
     "github.com",
     "creativecommons.org",
 }
