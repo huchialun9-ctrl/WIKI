@@ -223,6 +223,8 @@ def save_footnotes(page_id: int, notes: list[dict]):
 
 
 def get_or_create_user(username: str) -> dict:
+    if not db_available():
+        return {"id": 0, "username": username, "role": "viewer"}
     with get_conn() as conn:
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute("SELECT * FROM users WHERE username = %s", (username,))

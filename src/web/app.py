@@ -315,13 +315,21 @@ def login():
     if request.method == "POST":
         username = request.form.get("username", "").strip()
         if username:
-            user = get_or_create_user(username)
-            session["user_id"] = user["id"]
-            session["username"] = user["username"]
-            session["role"] = user["role"]
-            flash(f"歡迎回來，{username}", "success")
-            return redirect(request.args.get("next") or url_for("homepage"))
-        flash("請輸入用戶名稱", "error")
+            try:
+                user = get_or_create_user(username)
+                if not user or not user.get("id"):
+                    flash("資料庫暫時無法使用，請稍後再試", "error")
+                    return render_template("login.html", title="登入")
+                session["user_id"] = user["id"]
+                session["username"] = user["username"]
+                session["role"] = user.get("role", "viewer")
+                flash(f"歡迎回來，{username}", "success")
+                return redirect(request.args.get("next") or url_for("homepage"))
+            except Exception as e:
+                logger.error(f"Login failed: {e}")
+                flash("登入過程發生錯誤，請稍後再試", "error")
+        else:
+            flash("請輸入用戶名稱", "error")
     return render_template("login.html", title="登入")
 
 
