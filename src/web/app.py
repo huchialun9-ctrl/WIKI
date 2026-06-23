@@ -129,15 +129,27 @@ def admin_required(f):
 
 @app.route("/")
 def homepage():
-    lang = request.args.get("lang", "zh-tw")
+    lang = request.args.get("lang", session.get("lang", "zh-tw"))
+    session["lang"] = lang
     parser.set_lang(lang)
     parser.set_magic("NUMBEROFARTICLES", str(get_article_count()))
     parser.set_magic("CURRENTVERSION", "v1.7.0")
+
+    home_raw = load_markdown_file("Guide", "首頁")
+    if home_raw:
+        rendered = render_page_content(home_raw, lang=lang)
+        body = rendered["body_html"]
+    else:
+        body = ""
+
     return render_template(
-        "base.html",
+        "page.html",
         title="首頁",
+        body_html=body,
         lang=lang,
         article_count=get_article_count(),
+        grade=None,
+        footnotes=[],
     )
 
 
