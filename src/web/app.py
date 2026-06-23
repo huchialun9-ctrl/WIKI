@@ -62,6 +62,14 @@ def load_markdown_file(namespace: str, slug: str, raw_title: str | None = None) 
             path = Path(CONTENT_DIR) / ns_dir / f"{name}{ext}"
             if path.exists():
                 return path.read_text(encoding="utf-8")
+    # Case-insensitive fallback (for Linux/Render)
+    ns_path = Path(CONTENT_DIR) / ns_dir
+    if ns_path.is_dir():
+        for f in ns_path.iterdir():
+            if f.suffix.lower() in (".md", ".wiki", ".txt"):
+                for name in candidates:
+                    if f.stem.lower() == name.lower():
+                        return f.read_text(encoding="utf-8")
     return None
 
 

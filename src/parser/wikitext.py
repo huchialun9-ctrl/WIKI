@@ -148,8 +148,7 @@ class WikitextParser:
         def repl(m):
             target = m.group(1).strip()
             display = m.group(2) if m.group(2) else target
-            slug = target.replace(" ", "_").lower()
-            url = f"/{slug}"
+            url = f"/{target}"
             return f'<a href="{url}">{display}</a>'
         return self.WIKILINK_RE.sub(repl, text)
 
