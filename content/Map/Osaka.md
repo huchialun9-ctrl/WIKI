@@ -67,6 +67,10 @@ Osaka 於 v1.6.0 版本加入<ref>v1.6.0 更新公告</ref>，為 Meccha Chamele
 - 霓虹招牌變換的瞬間（每 8 秒）是色差最大的時刻，盯緊可疑區域
 - 運河邊的欄杆高度僅 12 px — 趴下的躲藏者仍可能露出部分碰撞體
 
+## 相關條目
+
+- [[Guide:Osaka（消歧義）]] — 其他相關條目
+
 ## 參考資料
 
 <ref>v1.6.0 更新公告：https://steamcommunity.com/games/2277090/announcements/detail/4182154</ref>

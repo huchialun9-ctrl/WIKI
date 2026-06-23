@@ -33,6 +33,10 @@ image_url: /assets/items/osa_Skin.svg
 - [[Item:隱藏成就解鎖]] — 成就系統總覽
 - [[Patch:v1.7.0]] — 版本更新說明
 
+## 相關條目
+
+- [[Guide:Osaka（消歧義）]] — 其他相關條目
+
 ## 參考資料
 
 <ref>v1.7.0 更新公告：https://steamcommunity.com/games/2277090/announcements/detail/4704690</ref>

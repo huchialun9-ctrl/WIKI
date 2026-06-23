@@ -51,12 +51,17 @@ def slug_from_title(title: str) -> str:
     return title.replace(" ", "_").lower()
 
 
-def load_markdown_file(namespace: str, slug: str) -> str | None:
+def load_markdown_file(namespace: str, slug: str, raw_title: str | None = None) -> str | None:
     ns_dir = ns_to_dir(namespace)
-    for ext in (".md", ".wiki", ".txt"):
-        path = Path(CONTENT_DIR) / ns_dir / f"{slug}{ext}"
-        if path.exists():
-            return path.read_text(encoding="utf-8")
+    candidates = [slug]
+    if raw_title:
+        candidates.append(raw_title)
+        candidates.append(raw_title.lower())
+    for name in candidates:
+        for ext in (".md", ".wiki", ".txt"):
+            path = Path(CONTENT_DIR) / ns_dir / f"{name}{ext}"
+            if path.exists():
+                return path.read_text(encoding="utf-8")
     return None
 
 
@@ -173,9 +178,9 @@ def view_page(page_path):
     lang = request.args.get("lang", session.get("lang", "zh-tw"))
     session["lang"] = lang
 
-    namespace, slug = detect_namespace(page_path)
-    slug = slug_from_title(slug)
-    raw = load_markdown_file(namespace, slug)
+    namespace, raw_title = detect_namespace(page_path)
+    slug = slug_from_title(raw_title)
+    raw = load_markdown_file(namespace, slug, raw_title)
 
     if raw is None:
         abort(404)
@@ -220,7 +225,8 @@ def view_page(page_path):
             "area_sqm": meta.get("area_sqm"),
             "since_version": meta.get("since_version"),
         }
-        return render_template("map.html", **template_kw)
+        if slug != "主要索引":
+            return render_template("map.html", **template_kw)
 
     if namespace == "Item":
         template_kw["item"] = {
@@ -230,7 +236,8 @@ def view_page(page_path):
             "cooldown": parse_num(meta.get("cooldown")),
             "coverage": parse_num(meta.get("coverage")),
         }
-        return render_template("item.html", **template_kw)
+        if slug != "主要索引":
+            return render_template("item.html", **template_kw)
 
     return render_template("page.html", **template_kw)
 
@@ -240,9 +247,9 @@ def view_page(page_path):
 def edit_page(page_path):
     if ":" not in page_path:
         abort(400)
-    namespace, title = page_path.split(":", 1)
-    slug = slug_from_title(title)
-    raw = load_markdown_file(namespace, slug) or ""
+    namespace, raw_title = page_path.split(":", 1)
+    slug = slug_from_title(raw_title)
+    raw = load_markdown_file(namespace, slug, raw_title) or ""
 
     protection = None
     page = get_page_by_slug(namespace, slug)
