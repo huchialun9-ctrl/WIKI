@@ -11,7 +11,6 @@
   <table>
     <tr><th>類型</th><td>地圖</td></tr>
     <tr><th>面積</th><td>{{ map.area_sqm | default("?") }} m²</td></tr>
-    <tr><th>標準色數</th><td>{{ map.colors | length }}</td></tr>
     <tr><th>加入版本</th><td>{{ map.since_version | default("?") }}</td></tr>
   </table>
 </div>
@@ -21,29 +20,5 @@
 {% block content %}
 
 {{ super() }}
-
-{% if map.colors %}
-<h3>環境標準色碼</h3>
-<table class="color-table">
-  <thead>
-    <tr>
-      <th>色塊</th>
-      <th>名稱</th>
-      <th>HEX</th>
-      <th>RGB</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for c in map.colors %}
-    <tr>
-      <td><span class="color-swatch" style="background:#{{ c.hex }};"></span></td>
-      <td>{{ c.name }}</td>
-      <td><span class="color-hex" data-hex="#{{ c.hex }}">#{{ c.hex }}</span></td>
-      <td><span class="color-hex" data-hex="rgb{{ c.rgb }}">rgb{{ c.rgb }}</span></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endif %}
 
 {% endblock %}

@@ -188,6 +188,15 @@ def view_page(page_path):
     protection = get_active_protection(page_id) if page_id else None
     image_url = meta.get("image_url", "")
 
+    def parse_num(val):
+        if val is None:
+            return None
+        s = str(val).replace("%", "").replace("s", "").replace("px", "").strip()
+        try:
+            return float(s) if "." in s else int(s)
+        except ValueError:
+            return None
+
     template_kw = {
         "title": meta.get("title", page_path),
         "body_html": rendered["body_html"],
@@ -196,26 +205,30 @@ def view_page(page_path):
         "protection_level": protection["level"] if protection else None,
         "protection_reason": protection.get("reason") if protection else None,
         "grade": page.get("grade") if page else None,
+        "toc_items": None,
+        "categories": None,
+        "is_admin": session.get("role") == "admin",
+        "last_edit": None,
+        "subtitle": None,
+        "active_templates": None,
     }
 
     if namespace == "Map":
         template_kw["map"] = {
             "name": meta.get("title", slug),
-            "image_url": image_url,
+            "image_url": image_url or "/assets/placeholder.svg",
             "area_sqm": meta.get("area_sqm"),
             "since_version": meta.get("since_version"),
-            "colors": [],
         }
         return render_template("map.html", **template_kw)
 
     if namespace == "Item":
         template_kw["item"] = {
             "name": meta.get("title", slug),
-            "image_url": image_url,
-            "item_type": meta.get("item_type"),
-            "cooldown_sec": meta.get("cooldown_sec"),
-            "coverage_pct": meta.get("coverage_pct"),
-            "unlock_condition": meta.get("unlock_condition"),
+            "image_url": image_url or "/assets/placeholder.svg",
+            "unlock": meta.get("unlock"),
+            "cooldown": parse_num(meta.get("cooldown")),
+            "coverage": parse_num(meta.get("coverage")),
         }
         return render_template("item.html", **template_kw)
 
@@ -357,7 +370,7 @@ def login():
         if username:
             try:
                 user = get_or_create_user(username)
-                if not user or not user.get("id"):
+                if not user:
                     flash("資料庫暫時無法使用，請稍後再試", "error")
                     return render_template("login.html", title="登入")
                 session["user_id"] = user["id"]

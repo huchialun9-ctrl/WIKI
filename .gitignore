@@ -2,7 +2,4 @@ __pycache__/
 *.pyc
 .env
 venv/
-assets/maps/
-assets/items/
-assets/workshop/
 *.webp

@@ -44,14 +44,14 @@
   {% if protection_level and protection_level != 'none' %}
   <div class="protection-banner {{ protection_level }}">
     <span class="prot-icon">
-      {% if protection_level == 'semi' %}🔶{% else %}🔒{% endif %}
+      {% if protection_level == 'semi' %}🟡{% else %}🔒{% endif %}
     </span>
     <span>
       此頁面已{{ "半" if protection_level == 'semi' else "" }}保護
       {% if protection_reason %}（{{ protection_reason }}）{% endif %}。
       僅限
       {% if protection_level == 'semi' %}
-      <a href="/Help:自動確認用戶">自動確認用戶</a>
+      <a href="/Help:%E8%87%AA%E5%8B%95%E7%A2%BA%E8%AA%8D%E7%94%A8%E6%88%B6">自動確認用戶</a>
       {% else %}
       管理員
       {% endif %}
@@ -86,7 +86,7 @@
   </div>
 
   <footer class="wiki-footer">
-    <p>此頁面最後編輯於 {{ last_edit | default("未知") }}。</p>
+    <p>此頁面最後編輯於 {{ last_edit if last_edit else "—" }}。</p>
     <p>除非另有註明，否則本站內容均採用
       <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> 授權。</p>
   </footer>
