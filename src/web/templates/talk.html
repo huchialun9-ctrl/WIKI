@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="talk-header">
+  <span>討論頁 — <a href="/{{ page_namespace }}:{{ page_title }}">{{ page_title }}</a></span>
+  {% if is_locked %}
+  <span class="talk-lock-notice">
+    此討論頁因編輯爭議已鎖定
+    {% if lock_reason %}（{{ lock_reason }}）{% endif %}
+    {% if locked_until %}，預計 {{ locked_until }} 解鎖{% endif %}
+  </span>
+  {% else %}
+  <span style="color:var(--text-secondary);font-size:0.9em;">
+    請保持文明、尊重中立觀點
+  </span>
+  {% endif %}
+</div>
+
+{% for thread in threads %}
+<div class="thread">
+  <div class="thread-header">
+    {{ thread.title }}
+    <span class="thread-meta">
+      — 由 {{ thread.author }} 於 {{ thread.created_at }} 發起
+    </span>
+    {% if thread.is_resolved %}
+    <span class="resolve-badge">✓ 已解決</span>
+    {% endif %}
+  </div>
+
+  <div class="thread-body">
+    {{ thread.body | safe }}
+  </div>
+
+  {% for reply in thread.replies %}
+  <div class="thread-reply">
+    <span class="reply-meta">{{ reply.author }} · {{ reply.created_at }}</span>
+    <div style="margin-top:0.2rem;">{{ reply.body }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% endfor %}
+
+{% if not is_locked and is_autoconfirmed %}
+<div style="margin-top:1rem;padding:0.5rem;border:1px solid var(--border-light);">
+  <strong>發表新討論</strong>
+  <form method="post" action="/Talk:{{ page_title }}/new">
+    <input type="text" name="title" placeholder="討論標題"
+           style="width:100%;margin:0.3rem 0;padding:0.3rem;
+                  border:1px solid var(--border-color);font-family:var(--font-family);">
+    <textarea name="body" rows="4" placeholder="請輸入您的意見..."
+              style="width:100%;margin:0.3rem 0;padding:0.3rem;
+                     border:1px solid var(--border-color);font-family:var(--font-family);"></textarea>
+    <button type="submit" style="padding:0.3rem 1rem;cursor:pointer;
+            border:1px solid var(--border-color);background:var(--bg-content);
+            font-family:var(--font-family);">發表</button>
+  </form>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,580 @@
+/* ============================================================
+   Meccha Chameleon Wiki — Wikipedia 標準淺色主題
+   ============================================================ */
+
+:root {
+  --bg-body: #ffffff;
+  --bg-content: #f8f9fa;
+  --bg-table-header: #eaecf0;
+  --text-primary: #202122;
+  --text-secondary: #54595d;
+  --link-blue: #3366cc;
+  --link-red: #dd3333;
+  --link-visited: #795cb2;
+  --border-color: #a2a9b1;
+  --border-light: #c8ccd1;
+  --infobox-bg: #f8f9fa;
+  --infobox-border: #a2a9b1;
+  --font-family: "Noto Sans TC", "Noto Sans SC", "Helvetica Neue",
+    Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-size-base: 14px;
+  --line-height: 1.6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+}
+
+a {
+  color: var(--link-blue);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--link-visited);
+}
+a:hover {
+  text-decoration: underline;
+}
+a.new {
+  color: var(--link-red);
+}
+
+/* ===== 版面佈局 ===== */
+.wiki-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.wiki-header {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 1rem;
+}
+.wiki-header h1 {
+  font-size: 1.8em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.wiki-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  margin-top: 0.25rem;
+}
+
+.wiki-content {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.wiki-article {
+  flex: 1;
+  min-width: 0;
+}
+
+.wiki-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.wiki-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.85em;
+  color: var(--text-secondary);
+}
+
+/* ===== 導覽列 ===== */
+.wiki-nav {
+  background: var(--bg-content);
+  border: 1px solid var(--border-light);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9em;
+}
+.wiki-nav a {
+  margin-right: 1rem;
+}
+
+/* ===== Infobox ===== */
+.infobox {
+  width: 220px;
+  background: var(--infobox-bg);
+  border: 1px solid var(--infobox-border);
+  font-size: 0.9em;
+  margin-bottom: 1rem;
+}
+.infobox-header {
+  background: var(--bg-table-header);
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--infobox-border);
+}
+.infobox-image {
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--infobox-border);
+}
+.infobox-image img {
+  max-width: 180px;
+  height: auto;
+}
+.infobox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.infobox th,
+.infobox td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+.infobox th {
+  width: 40%;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+.infobox tr:last-child th,
+.infobox tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== 色碼資料表 ===== */
+.color-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+.color-table th {
+  background: var(--bg-table-header);
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+.color-table td {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border-color);
+}
+.color-swatch {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+.color-hex {
+  cursor: pointer;
+  font-family: "Consolas", "Courier New", monospace;
+  color: var(--link-blue);
+}
+.color-hex:hover {
+  text-decoration: underline;
+}
+
+/* ===== 目錄 ===== */
+.toc {
+  background: var(--bg-content);
+  border: 1px solid var(--border-light);
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+.toc-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.toc ul {
+  list-style: none;
+  padding-left: 1.2em;
+}
+.toc li {
+  margin: 0.2rem 0;
+}
+.toc a {
+  color: var(--link-blue);
+}
+
+/* ===== 分類標籤 ===== */
+.categories {
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.85em;
+}
+.categories a {
+  color: var(--link-blue);
+}
+.categories a::after {
+  content: " | ";
+}
+.categories a:last-child::after {
+  content: "";
+}
+
+/* ===== 表格通用 ===== */
+.wikitable {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+.wikitable th {
+  background: var(--bg-table-header);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+.wikitable td {
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.6rem;
+}
+
+/* ===== 編輯工具列 ===== */
+.edit-toolbar {
+  background: var(--bg-content);
+  border: 1px solid var(--border-light);
+  padding: 0.5rem;
+  margin: 1rem 0;
+  font-size: 0.85em;
+}
+.edit-toolbar button {
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+}
+.edit-toolbar button:hover {
+  background: var(--bg-table-header);
+}
+
+/* ===== 版本歷史 ===== */
+.revision-list {
+  list-style: none;
+  font-size: 0.85em;
+}
+.revision-list li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.revision-list .rollback-btn {
+  color: var(--link-red);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+/* ============================================================
+   第六章：維基模板（Template Banners）
+   ============================================================ */
+
+.tpl-banner {
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0 1rem 0;
+  border: 1px solid var(--border-color);
+  font-size: 0.88em;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.tpl-banner-icon {
+  font-weight: 700;
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+.tpl-banner-body a {
+  font-weight: 600;
+}
+
+/* {{Stub}} — 小作品 */
+.tpl-stub {
+  background: #faf9f2;
+  border-left: 4px solid #c8a84e;
+}
+
+/* {{Outdated}} — 過時資訊 */
+.tpl-outdated {
+  background: #ffe9e9;
+  border-left: 4px solid #dd3333;
+}
+
+/* {{Unreferenced}} — 缺乏來源 */
+.tpl-unreferenced {
+  background: #f5effa;
+  border-left: 4px solid #8a6dbb;
+}
+
+/* {{Spoiler}} — 劇情透露（可折疊） */
+.tpl-spoiler {
+  background: #2c2c30;
+  color: #e0e0e0;
+  border-left: 4px solid #ff477e;
+}
+.tpl-spoiler a {
+  color: #77bbff;
+}
+.tpl-spoiler .spoiler-toggle {
+  cursor: pointer;
+  font-weight: 600;
+  color: #ff477e;
+  user-select: none;
+}
+.tpl-spoiler .spoiler-content {
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  border: 1px dashed #555;
+}
+.tpl-spoiler .spoiler-content.hidden {
+  display: none;
+}
+
+/* {{Merged}} — 請求合併 */
+.tpl-merged {
+  background: #eaf3ff;
+  border-left: 4px solid #3366cc;
+}
+
+/* ============================================================
+   第六章：腳註與參考資料
+   ============================================================ */
+
+.footnote-ref {
+  font-size: 0.8em;
+  vertical-align: super;
+  line-height: 1;
+  color: var(--link-blue);
+  cursor: pointer;
+}
+.footnote-ref:hover {
+  text-decoration: underline;
+}
+
+.references-section {
+  margin: 1.5rem 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.88em;
+}
+.references-section h3 {
+  font-size: 1em;
+  margin-bottom: 0.5rem;
+}
+.references-list {
+  list-style: none;
+  counter-reset: ref-counter;
+}
+.references-list li {
+  counter-increment: ref-counter;
+  margin: 0.3rem 0;
+  padding-left: 2em;
+  text-indent: -2em;
+}
+.references-list li::before {
+  content: counter(ref-counter) ". ";
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.ref-source-badge {
+  display: inline-block;
+  font-size: 0.75em;
+  padding: 0.1em 0.4em;
+  margin-right: 0.3em;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.ref-source-primary {
+  background: #d4e6f9;
+  color: #1a4d80;
+}
+.ref-source-secondary {
+  background: #f0f0f0;
+  color: #54595d;
+}
+
+/* ============================================================
+   第六章：消歧義頁面
+   ============================================================ */
+
+.disambig {
+  background: #f8f9fa;
+  border: 1px solid #a2a9b1;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+.disambig-header {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.disambig-list {
+  list-style: none;
+  padding-left: 0;
+}
+.disambig-list li {
+  margin: 0.3rem 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+.disambig-list li::before {
+  content: "● ";
+  color: var(--link-blue);
+  font-size: 0.7em;
+}
+
+/* ============================================================
+   第六章：條目評級徽章
+   ============================================================ */
+
+.grade-badge {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  font-size: 0.78em;
+  font-weight: 700;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+.grade-fa {
+  background: #b8860b;
+  color: #fff;
+}
+.grade-ga {
+  background: #2d8c2d;
+  color: #fff;
+}
+.grade-b {
+  background: #4a7db5;
+  color: #fff;
+}
+.grade-c {
+  background: #8a8a8a;
+  color: #fff;
+}
+.grade-start {
+  background: #b0b0b0;
+  color: #fff;
+}
+.grade-stub {
+  background: #d0d0d0;
+  color: #666;
+}
+
+/* ============================================================
+   第七章：討論頁
+   ============================================================ */
+
+.talk-header {
+  background: #f8f9fa;
+  border: 1px solid #a2a9b1;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.talk-lock-notice {
+  color: #dd3333;
+  font-weight: 600;
+}
+
+.thread {
+  border: 1px solid var(--border-light);
+  margin: 0.8rem 0;
+}
+.thread-header {
+  background: var(--bg-content);
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--border-light);
+  font-weight: 600;
+  font-size: 0.95em;
+  cursor: pointer;
+}
+.thread-header .thread-meta {
+  font-weight: 400;
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  margin-left: 0.5rem;
+}
+.thread-header .resolve-badge {
+  float: right;
+  color: #2d8c2d;
+  font-size: 0.85em;
+}
+.thread-body {
+  padding: 0.6rem;
+}
+.thread-reply {
+  padding: 0.4rem 0.6rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.9em;
+}
+.thread-reply .reply-meta {
+  color: var(--text-secondary);
+  font-size: 0.85em;
+}
+
+/* ============================================================
+   第七章：頁面保護通告
+   ============================================================ */
+
+.protection-banner {
+  background: #fee7e7;
+  border: 1px solid #dd3333;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0 1rem 0;
+  font-size: 0.88em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.protection-banner .prot-icon {
+  font-size: 1.2em;
+}
+.protection-banner.semi {
+  background: #fff4e5;
+  border-color: #e8a838;
+}
+.protection-banner.full {
+  background: #fee7e7;
+  border-color: #dd3333;
+}
+
+/* ============================================================
+   Toast 提示
+   ============================================================ */
+
+.toast {
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--text-primary);
+  color: var(--bg-body);
+  padding: 0.5rem 1rem;
+  font-size: 0.85em;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+}

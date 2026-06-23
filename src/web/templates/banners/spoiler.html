@@ -1,0 +1,10 @@
+<div class="tpl-banner tpl-spoiler">
+  <span class="tpl-banner-icon">🔶</span>
+  <span class="tpl-banner-body">
+    <span class="spoiler-toggle">[顯示]</span>
+    <strong>劇情 / 隱藏要素透露</strong>
+    {% if spoiler_content %}
+    <div class="spoiler-content hidden">{{ spoiler_content | safe }}</div>
+    {% endif %}
+  </span>
+</div>

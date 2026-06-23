@@ -1,0 +1,21 @@
+{% extends "page.html" %}
+
+{% block sidebar %}
+
+<div class="infobox">
+  <div class="infobox-header">{{ item.name }}</div>
+  <div class="infobox-image">
+    <img src="{{ item.image_url | default('/assets/placeholder.svg') }}"
+         alt="{{ item.name }}">
+  </div>
+  <table>
+    <tr><th>類型</th><td>{{ item.item_type | default("道具") }}</td></tr>
+    <tr><th>冷卻時間</th><td>{{ item.cooldown_sec | default("?") }} 秒</td></tr>
+    <tr><th>塗鴉覆蓋率</th><td>{{ item.coverage_pct | default("?") }}%</td></tr>
+    {% if item.unlock_condition %}
+    <tr><th>解鎖條件</th><td>{{ item.unlock_condition }}</td></tr>
+    {% endif %}
+  </table>
+</div>
+
+{% endblock %}

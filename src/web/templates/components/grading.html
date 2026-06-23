@@ -1,0 +1,23 @@
+<!--
+  條目評級徽章
+  用法：{% include "components/grading.html" with grade="FA" %}
+-->
+
+{% if grade %}
+<span class="grade-badge
+  {% if grade == 'FA' %}grade-fa
+  {% elif grade == 'GA' %}grade-ga
+  {% elif grade == 'B' %}grade-b
+  {% elif grade == 'C' %}grade-c
+  {% elif grade == 'Start' %}grade-start
+  {% elif grade == 'Stub' %}grade-stub
+  {% endif %}">
+  {% if grade == 'FA' %}典範條目
+  {% elif grade == 'GA' %}優良條目
+  {% elif grade == 'B' %}乙級
+  {% elif grade == 'C' %}丙級
+  {% elif grade == 'Start' %}初級
+  {% elif grade == 'Stub' %}小作品
+  {% endif %}
+</span>
+{% endif %}

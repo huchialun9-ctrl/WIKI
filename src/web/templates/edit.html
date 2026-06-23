@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="margin-bottom:0.5rem;font-size:0.9em;color:var(--text-secondary);">
+  正在編輯：<strong>{{ page_path }}</strong>
+</div>
+
+<form method="post" action="{{ url_for('edit_page', page_path=page_path) }}">
+  <div class="edit-toolbar">
+    <button type="button" onclick="insertText('**','**')">粗體</button>
+    <button type="button" onclick="insertText("''","''")">斜體</button>
+    <button type="button" onclick="insertText('[[',']]')">內部連結</button>
+    <button type="button" onclick="insertText('<ref>','</ref>')">腳註</button>
+    <button type="button" onclick="insertText('## ','')">標題</button>
+  </div>
+
+  <textarea name="body" rows="24"
+            style="width:100%;padding:0.5rem;border:1px solid var(--border-color);
+                   font-family:'Consolas','Courier New',monospace;font-size:0.9em;
+                   line-height:1.5;resize:vertical;">{{ content }}</textarea>
+
+  {% if captcha %}
+  <div style="margin:0.5rem 0;padding:0.5rem;border:1px solid var(--border-color);background:#f8f9fa;">
+    <label style="font-weight:600;">人機驗證</label>
+    <p style="font-size:0.85em;color:var(--text-secondary);margin:0.2rem 0;">
+      {{ captcha.question }}
+    </p>
+    <input type="hidden" name="captcha_id" value="{{ captcha.challenge_id }}">
+    <input type="text" name="captcha_answer" placeholder="請輸入答案"
+           style="width:120px;padding:0.3rem;border:1px solid var(--border-color);
+                  font-family:var(--font-family);">
+  </div>
+  {% endif %}
+
+  <div style="margin:0.5rem 0;display:flex;align-items:center;gap:0.5rem;">
+    <input type="text" name="summary" placeholder="編輯摘要（選填）"
+           style="flex:1;padding:0.3rem;border:1px solid var(--border-color);
+                  font-family:var(--font-family);">
+    <button type="submit"
+            style="padding:0.4rem 1.2rem;cursor:pointer;border:1px solid var(--border-color);
+                   background:#3366cc;color:#fff;font-family:var(--font-family);">
+      儲存頁面
+    </button>
+    <a href="{{ url_for('view_page', page_path=page_path) }}"
+       style="padding:0.4rem 1.2rem;border:1px solid var(--border-color);
+              color:var(--text-primary);text-decoration:none;">取消</a>
+  </div>
+</form>
+
+<script>
+function insertText(before, after) {
+  var ta = document.querySelector('textarea[name="body"]');
+  var start = ta.selectionStart;
+  var end = ta.selectionEnd;
+  var selected = ta.value.substring(start, end);
+  ta.value = ta.value.substring(0, start) + before + selected + after + ta.value.substring(end);
+  ta.focus();
+  ta.selectionStart = start + before.length;
+  ta.selectionEnd = start + before.length + selected.length;
+}
+</script>
+
+{% endblock %}

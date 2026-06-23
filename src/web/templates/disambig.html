@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="disambig">
+  <div class="disambig-header">此為消歧義頁面，旨在區分以下同名或相似條目</div>
+</div>
+
+<h2>{{ title }} 可能指：</h2>
+
+<ul class="disambig-list">
+  {% for entry in disambiguation_entries %}
+  <li>
+    <a href="{{ entry.url }}"
+       {% if entry.exists %}class="exists"{% else %}class="new"{% endif %}>
+      {{ entry.label }}
+    </a>
+    {% if entry.description %}
+    <span style="color:var(--text-secondary);font-size:0.88em;">
+      — {{ entry.description }}
+    </span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+<div style="margin-top:1.5rem;font-size:0.85em;color:var(--text-secondary);">
+  如果您是透過某條目的內部連結而轉到本頁，希望您能直接修正該連結，
+  將其指向正確的條目。
+</div>
+
+{% endblock %}

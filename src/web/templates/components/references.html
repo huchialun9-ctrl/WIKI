@@ -1,0 +1,26 @@
+<!--
+  腳註與參考資料區塊元件
+  用法：
+  {% include "components/references.html" with footnotes=page_footnotes %}
+-->
+
+{% if footnotes %}
+<section class="references-section">
+  <h3>參考資料</h3>
+  <ol class="references-list">
+    {% for fn in footnotes %}
+    <li>
+      <span class="ref-source-badge
+        {% if fn.source_type == 'primary' %}ref-source-primary
+        {% else %}ref-source-secondary{% endif %}">
+        {{ "一手文獻" if fn.source_type == "primary" else "二手文獻" }}
+      </span>
+      {{ fn.content }}
+      {% if fn.url %}
+      <a href="{{ fn.url }}" target="_blank" rel="nofollow">[外部連結]</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}

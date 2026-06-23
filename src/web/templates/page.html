@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if toc_items %}
+<div class="toc">
+  <div class="toc-title">目錄</div>
+  <ul>
+    {% for item in toc_items %}
+    <li><a href="#{{ item.anchor }}">{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div class="wiki-article-body">
+  {{ body_html | safe }}
+</div>
+
+{% if categories %}
+<div class="categories">
+  分類：
+  {% for cat in categories %}
+  <a href="/Category:{{ cat }}">{{ cat }}</a>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if revisions %}
+<div style="margin-top:2rem;">
+  <h3>版本歷史</h3>
+  <ul class="revision-list">
+    {% for rev in revisions %}
+    <li>
+      {{ rev.created_at }} — {{ rev.editor }}
+      {% if rev.summary %}（{{ rev.summary }}）{% endif %}
+      {% if is_admin %}
+      <span class="rollback-btn" data-revision="{{ rev.id }}">回滾</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p style="margin-bottom:1rem;font-size:0.9em;">
+  <a href="{{ url_for('view_page', page_path=page_path) }}">← 返回條目</a>
+</p>
+
+<h3>版本歷史：{{ page_path }}</h3>
+
+{% if revisions %}
+<table class="wikitable" style="width:100%;">
+  <thead>
+    <tr>
+      <th style="width:14em;">時間</th>
+      <th>編輯者</th>
+      <th>摘要</th>
+      <th style="width:5em;">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rev in revisions %}
+    <tr>
+      <td>{{ rev.created_at.strftime('%Y-%m-%d %H:%M') if rev.created_at else '?' }}</td>
+      <td>{{ rev.editor }}</td>
+      <td>
+        {{ rev.summary or '' }}
+        {% if rev.is_rollback %}
+        <span style="color:#dd3333;font-weight:600;">（回滾）</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if session.role == 'admin' %}
+        <a href="{{ url_for('rollback', page_path=page_path, revision_id=rev.id) }}"
+           class="rollback-btn"
+           onclick="return confirm('確定要回滾至此版本？')"
+           style="color:#dd3333;font-size:0.85em;">回滾</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p style="color:var(--text-secondary);">暫無版本紀錄。</p>
+{% endif %}
+
+{% endblock %}

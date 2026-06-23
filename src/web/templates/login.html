@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="max-width:400px;margin:2rem auto;">
+
+  <h3>登入 / 註冊</h3>
+  <p style="font-size:0.9em;color:var(--text-secondary);margin-bottom:1rem;">
+    本站使用用戶名稱即可快速登入，無需設定密碼。
+  </p>
+
+  <form method="post" action="{{ url_for('login') }}">
+    <label style="display:block;margin-bottom:0.3rem;font-weight:600;">用戶名稱</label>
+    <input type="text" name="username" required
+           placeholder="輸入您的用戶名稱"
+           style="width:100%;padding:0.4rem;border:1px solid var(--border-color);
+                  font-family:var(--font-family);margin-bottom:1rem;">
+
+    <button type="submit"
+            style="width:100%;padding:0.5rem;cursor:pointer;border:none;
+                   background:#3366cc;color:#fff;font-family:var(--font-family);
+                   font-size:1em;">
+      登入 / 註冊
+    </button>
+  </form>
+
+</div>
+
+{% endblock %}
