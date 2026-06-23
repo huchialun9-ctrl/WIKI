@@ -8,17 +8,6 @@
 - **工作坊** — Steam 社群自訂地圖索引（4★ 以上）
 - **維基專題** — 色碼測量、工作坊審查、條目評級
 
-## 部署
-
-```bash
-pip install -r requirements.txt
-createdb meccha_wiki
-psql -d meccha_wiki -f src/db/schema.sql
-python run_web.py
-```
-
-Render.com 一鍵部署：`render.yaml` 已備妥，連接 repo 即自動上線。
-
 ## 授權
 
 官方素材基於合理使用（Fair Use），社群原創內容採用 CC BY-SA 4.0。
